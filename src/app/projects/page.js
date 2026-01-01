@@ -113,7 +113,7 @@ export default function Projects() {
       description: "Designing and building high-end workspaces for international companies with modern furniture."
     },
     {
-      title: "Digital Glow Sign Board",
+      title: "Custom 3D Frosted Acralic Round Business Led board",
       category: "Branding & Signage",
       location: "Lucknow",
       image: "/Digital Glow Sign Board.png",
