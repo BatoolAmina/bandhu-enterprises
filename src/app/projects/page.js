@@ -213,7 +213,7 @@ export default function Projects() {
                     {project.title}
                   </h3>
                 </div>
-                <p className="text-gray-500 font-light text-[14px] leading-relaxed border-l-2 border-orange-500/20 pl-5 italic mx-auto sm:mx-0">
+                <p className="text-gray-600 text-[15px] leading-relaxed border-l-2 border-orange-500/20 pl-5 italic mx-auto sm:mx-0">
                   {project.description}
                 </p>
               </div>
