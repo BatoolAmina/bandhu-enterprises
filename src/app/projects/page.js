@@ -60,7 +60,7 @@ export default function Projects() {
       title: "Construction and interior of Buildings",
       category: "Full Project",
       location: "Lucknow",
-      image: "/Construction and interior of Buildings.jpeg",
+      image: "/interior.png",
       icon: <Home size={20} />,
       description: "Taking care of everything from the initial brickwork to the final beautiful interior finishes."
     },  
