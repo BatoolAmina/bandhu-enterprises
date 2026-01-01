@@ -11,6 +11,19 @@ export default function Footer() {
 
   const currentYear = new Date().getFullYear();
 
+  const expertises = [
+    "Architectural Design",
+    "Interior Works",
+    "RCC Construction",
+    "Road Construction",
+    "Waterproofing Solutions",
+    "Sewage Treatment Plants",
+    "Modular Workstations",
+    "Structural Glazing",
+    "Glow Sign Board",
+    "Structural Design"
+  ];
+
   return (
     <footer className="bg-[#0A0A0A] text-white pt-16 pb-8 overflow-hidden font-sans border-t border-white/5">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
@@ -23,7 +36,7 @@ export default function Footer() {
                   src="/logo.png" 
                   alt="Bandhu Logo"
                   className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-500"
-                  onError={(e) => { e.target.src = "/logo.png"; }}
+                  onError={(e) => { e.currentTarget.src = "/logo.png"; }}
                 />
               </div>
               <span className="font-serif font-bold tracking-tight text-xl md:text-2xl leading-none transition-colors group-hover:text-orange-500 uppercase">
@@ -78,11 +91,11 @@ export default function Footer() {
               <span className="w-4 h-px bg-orange-500"></span> Expertise
             </h4>
             <ul className="space-y-3 text-gray-500 text-[15px]">
-              <li className="hover:text-gray-300 transition-colors">Architectural Design</li>
-              <li className="hover:text-gray-300 transition-colors">Interior Build</li>
-              <li className="hover:text-gray-300 transition-colors">RCC Infrastructure</li>
-              <li className="hover:text-gray-300 transition-colors">Road Construction</li>
-              <li className="hover:text-gray-300 transition-colors">Waterproofing</li>
+              {expertises.map((exp) => (
+                <li key={exp} className="hover:text-gray-300 transition-colors cursor-default">
+                  {exp}
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -111,7 +124,7 @@ export default function Footer() {
                 <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center shrink-0">
                   <Mail size={14} className="text-orange-500" />
                 </div>
-                <a href="mailto:bandhuenterprises.info@gmail.com" className="text-gray-500 text-[15px] hover:text-white transition-colors">
+                <a href="mailto:bandhuenterprises.info@gmail.com" className="text-gray-500 text-[15px] hover:text-white transition-colors break-all">
                   bandhuenterprises.info@gmail.com
                 </a>
               </div>

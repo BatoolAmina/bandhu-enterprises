@@ -22,7 +22,6 @@ export default function Projects() {
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 1.1]);
   const opacityHeader = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
 
-  // To add a new project later, just add a new object {} to this list
   const projectList = [
     {
       title: "Construction of Roads",
@@ -35,7 +34,7 @@ export default function Projects() {
     {
       title: "Waterproofing of Roof",
       category: "Roof Protection",
-      location: "Commercial Sites",
+      location: "Hazratganj, Lucknow",
       image: "/Waterproofing of Roof.jpeg",
       icon: <HardHat size={20} />,
       description: "Applying advanced protective layers on roofs to prevent water seepage and damage."
@@ -43,7 +42,7 @@ export default function Projects() {
     {
       title: "Modular Workstation",
       category: "Corporate Interiors",
-      location: "MNC Offices",
+      location: "Aliganj, Lucknow",
       image: "/modular-workstation.jpg",
       icon: <Briefcase size={20} />,
       description: "Smart, ergonomic modular desk systems designed for maximum productivity and space optimization."
@@ -59,7 +58,7 @@ export default function Projects() {
     {
       title: "Construction and interior of Buildings",
       category: "Full Project",
-      location: "Lucknow",
+      location: "Aliganj, Lucknow",
       image: "/interior.png",
       icon: <Home size={20} />,
       description: "Taking care of everything from the initial brickwork to the final beautiful interior finishes."
@@ -99,7 +98,7 @@ export default function Projects() {
     {
       title: "Aluminium structural glazing and Aluminium works",
       category: "External Finishing",
-      location: "Project Sites",
+      location: "Aliganj, Lucknow",
       image: "/Acp glazing structures and almunium works.jpg",
       icon: <PanelTop size={20} />,
       description: "Installing modern glass fronts and aluminum structures for a sleek, corporate building look."
@@ -115,7 +114,7 @@ export default function Projects() {
     {
       title: "Custom 3D Frosted Acralic Round Business Led board",
       category: "Branding & Signage",
-      location: "Lucknow",
+      location: "Gomti Nagar, Lucknow",
       image: "/Digital Glow Sign Board.png",
       icon: <Monitor size={20} />,
       description: "Installation of premium illuminated digital signboards for high visibility branding."

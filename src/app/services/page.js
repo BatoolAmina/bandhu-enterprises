@@ -7,7 +7,11 @@ import {
   HardHat,
   CheckCircle2,
   Droplets,
-  Construction
+  Construction,
+  Layout,
+  Building,
+  Monitor,
+  Component
 } from 'lucide-react';
 
 export default function Services() {
@@ -36,28 +40,64 @@ export default function Services() {
 
   const services = [
     {
-      title: "Design Services",
+      title: "Architectural Design",
       icon: <PencilRuler size={32} />,
-      desc: "Precise technical planning and aesthetic conceptualization for structural integrity.",
-      items: ["Architectural and Structural Drawings", "Interior Architectural Planning", "Technical Project Blueprints"]
+      desc: "Comprehensive master planning and technical layouts for residential and commercial spaces.",
+      items: ["2D/3D Concept Maps", "Regulatory Compliance", "Space Optimization"]
     },
     {
-      title: "Construction Excellence",
+      title: "Interior Works",
+      icon: <Layout size={32} />,
+      desc: "High-end interior execution for corporate offices and luxury residential properties.",
+      items: ["Corporate Fit-outs", "Bespoke Furnishing", "Finishing Excellence"]
+    },
+    {
+      title: "RCC Construction",
+      icon: <Building size={32} />,
+      desc: "Heavy-duty structural frames and reinforced concrete engineering for high-rise durability.",
+      items: ["Structural Slabs", "High-Rise Frameworks", "Precision Casting"]
+    },
+    {
+      title: "Road Construction",
       icon: <Construction size={32} />,
-      desc: "Turnkey building solutions ranging from corporate interiors to urban landmarks.",
-      items: ["MNC Interior Office Construction", "Building Construction and Interiors", "Comprehensive Turnkey Execution"]
+      desc: "Industrial-grade roadway engineering designed for high load capacity and longevity.",
+      items: ["Bituminous Roadwork", "Concrete Pavements", "Infrastructure Links"]
     },
     {
-      title: "Infrastructure",
-      icon: <HardHat size={32} />,
-      desc: "Large-scale engineering projects built to withstand the test of time.",
-      items: ["RCC Over Head Tank Construction", "Sewage Treatment Plants (STP)", "Professional Road Construction"]
-    },
-    {
-      title: "Waterproofing",
+      title: "Waterproofing Solutions",
       icon: <Droplets size={32} />,
-      desc: "Advanced protective solutions to secure your structure from moisture and age.",
-      items: ["Reinforcement Cement Concrete (RCC)", "Swimming Pool Specialized Treatment", "High-Durability Roof Waterproofing"]
+      desc: "Multi-layer chemical treatments to protect structures from water damage and seepage.",
+      items: ["Roof Liquid Membranes", "Swimming Pool Lining", "Basement Protection"]
+    },
+    {
+      title: "Sewage Treatment Plants",
+      icon: <CheckCircle2 size={32} />,
+      desc: "Sustainable water management systems ensuring environmental compliance and hygiene.",
+      items: ["STP/ETP Installation", "Technical Maintenance", "Eco-Friendly Systems"]
+    },
+    {
+      title: "Modular Workstations",
+      icon: <Component size={32} />,
+      desc: "Ergonomic and efficient office furniture solutions optimized for modern workflows.",
+      items: ["Modular Desking", "Acoustic Partitions", "Ergonomic Setup"]
+    },
+    {
+      title: "Structural Glazing",
+      icon: <ShieldCheck size={32} />,
+      desc: "Premium exterior glass facades and ACP cladding for modern architectural aesthetics.",
+      items: ["Glass Facades", "ACP Panel Cladding", "Weather Proofing"]
+    },
+    {
+      title: "Glow Sign Board",
+      icon: <Monitor size={32} />,
+      desc: "Custom 3D acrylic and LED branding solutions for high-visibility business presence.",
+      items: ["LED Branding", "3D Acrylic Design", "External Signage"]
+    },
+    {
+      title: "Structural Design",
+      icon: <HardHat size={32} />,
+      desc: "Advanced structural engineering blueprints ensuring maximum safety and integrity.",
+      items: ["Load Analysis", "Reinforcement Details", "Safety Audits"]
     }
   ];
 
@@ -113,7 +153,7 @@ export default function Services() {
           variants={staggerContainer}
           initial="initial"
           whileInView="whileInView"
-          className="grid md:grid-cols-2 gap-8"
+          className="grid md:grid-cols-2 lg:grid-cols-2 gap-8"
         >
           {services.map((service, index) => (
             <motion.div
@@ -130,7 +170,7 @@ export default function Services() {
                 {service.icon}
               </motion.div>
               <h3 className="text-xl font-serif mb-3 text-[#2D241E] font-bold uppercase tracking-widest">{service.title}</h3>
-              <p className="text-gray-500 text-sm mb-8 leading-relaxed max-w-xs hover:text-gray-700">{service.desc}</p>
+              <p className="text-gray-500 text-sm mb-8 leading-relaxed max-w-xs group-hover:text-gray-700">{service.desc}</p>
               
               <div className="w-full space-y-3 pt-6 border-t border-gray-200">
                 {service.items.map((item, idx) => (
@@ -168,7 +208,7 @@ export default function Services() {
             <div className="grid grid-cols-2 gap-6 pt-4 border-t border-gray-200">
               <motion.div whileHover={{ y: -5 }} className="cursor-default">
                 <p className="text-orange-500 font-bold text-xl mb-1 uppercase tracking-tighter">Gold Standard</p>
-                <p className="text-gray-5 00 text-[12px] uppercase font-bold tracking-widest">Quality Assurance</p>
+                <p className="text-gray-500 text-[12px] uppercase font-bold tracking-widest">Quality Assurance</p>
               </motion.div>
               <motion.div whileHover={{ y: -5 }} className="cursor-default">
                 <p className="text-[#2D241E] font-bold text-xl mb-1 uppercase tracking-tighter">Turnkey</p>
