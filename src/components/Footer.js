@@ -121,7 +121,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/5 pt-5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-gray-600 text-[9px] tracking-[0.2em] uppercase font-medium">
+          <p className="text-gray-600 text-[11px] tracking-[0.2em] uppercase font-medium">
             © {currentYear} Bandhu Enterprises. All rights reserved.
           </p>
           
@@ -129,7 +129,7 @@ export default function Footer() {
             onClick={scrollToTop}
             className="group flex items-center gap-3 text-[9px] uppercase tracking-[0.3em] font-bold text-gray-500 hover:text-orange-500 transition-all"
           >
-            <span>Back to top</span>
+            <span className='text-[11px]'>Back to top</span>
             <div className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center group-hover:border-orange-500 transition-all shadow-lg group-hover:shadow-orange-500/20">
               <ArrowUp size={14} className="group-hover:-translate-y-1 transition-transform" />
             </div>
