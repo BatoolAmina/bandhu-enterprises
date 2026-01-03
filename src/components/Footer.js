@@ -21,11 +21,12 @@ export default function Footer() {
     "Modular Workstations",
     "Structural Glazing",
     "Glow Sign Board",
-    "Structural Design"
+    "Structural Design",
+    "Soil Testing"
   ];
 
   return (
-    <footer className="bg-[#0A0A0A] text-white pt-16 pb-8 overflow-hidden font-sans border-t border-white/5">
+    <footer className="bg-[#2D241E] text-[#FDFCF0] pt-16 pb-8 overflow-hidden font-sans border-t border-[#D4AF37]/20">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           
@@ -39,16 +40,16 @@ export default function Footer() {
                   onError={(e) => { e.currentTarget.src = "/logo.png"; }}
                 />
               </div>
-              <span className="font-serif font-bold tracking-tight text-xl md:text-2xl leading-none transition-colors group-hover:text-orange-500 uppercase">
+              <span className="font-serif font-bold tracking-tight text-xl md:text-2xl leading-none transition-colors group-hover:text-[#D4AF37] uppercase text-[#FDFCF0]">
                 BANDHU<br/> ENTERPRISES
               </span>
             </Link>
             
             <div className="space-y-4">
-               <p className="text-orange-500 text-[12px] font-bold uppercase tracking-[0.2em] leading-relaxed italic border-l-2 border-orange-500/50 pl-4">
+               <p className="text-[#D4AF37] text-[12px] font-bold uppercase tracking-[0.2em] leading-relaxed italic border-l-2 border-[#D4AF37]/50 pl-4">
                 Foundation of Trust, <br /> Blueprint of Excellence
               </p>
-              <p className="text-gray-500 text-[14px] leading-relaxed max-w-xs">
+              <p className="text-[#D1C7BD] text-[14px] leading-relaxed max-w-xs">
                 Leading premium structural engineering and interior solutions in Lucknow since 2010.
               </p>
             </div>
@@ -58,27 +59,27 @@ export default function Footer() {
                 <motion.a 
                   key={i} 
                   href="#" 
-                  whileHover={{ y: -5, backgroundColor: "#ea580c" }}
-                  className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center transition-all duration-300 group"
+                  whileHover={{ y: -5, backgroundColor: "#D4AF37" }}
+                  className="w-10 h-10 rounded-xl bg-[#FDFCF0]/10 flex items-center justify-center transition-all duration-300 group"
                 >
-                  <Icon size={16} className="text-gray-400 group-hover:text-white" />
+                  <Icon size={16} className="text-[#FDFCF0] group-hover:text-[#2D241E]" />
                 </motion.a>
               ))}
             </div>
           </div>
 
           <div className="lg:ml-auto">
-            <h4 className="text-white text-[12px] font-bold uppercase tracking-[0.3em] mb-8 flex items-center gap-2">
-              <span className="w-4 h-px bg-orange-500"></span> Navigation
+            <h4 className="text-[#D4AF37] text-[12px] font-bold uppercase tracking-[0.3em] mb-8 flex items-center gap-2">
+              <span className="w-4 h-px bg-[#D4AF37]"></span> Navigation
             </h4>
             <ul className="space-y-3">
               {['Home', 'About', 'Services', 'Projects', 'Contact'].map((item) => (
                 <li key={item}>
                   <Link 
                     href={item === 'Home' ? '/' : `/${item.toLowerCase()}`} 
-                    className="text-gray-500 text-[15px] hover:text-orange-500 transition-colors flex items-center gap-2 group"
+                    className="text-[#D1C7BD] text-[15px] hover:text-[#D4AF37] transition-colors flex items-center gap-2 group"
                   >
-                    <span className="w-0 h-px bg-orange-500 transition-all group-hover:w-3"></span>
+                    <span className="w-0 h-px bg-[#D4AF37] transition-all group-hover:w-3"></span>
                     {item}
                   </Link>
                 </li>
@@ -87,12 +88,12 @@ export default function Footer() {
           </div>
 
           <div className="lg:ml-auto">
-             <h4 className="text-white text-[12px] font-bold uppercase tracking-[0.3em] mb-8 flex items-center gap-2">
-              <span className="w-4 h-px bg-orange-500"></span> Expertise
+             <h4 className="text-[#D4AF37] text-[12px] font-bold uppercase tracking-[0.3em] mb-8 flex items-center gap-2">
+              <span className="w-4 h-px bg-[#D4AF37]"></span> Expertise
             </h4>
-            <ul className="space-y-3 text-gray-500 text-[15px]">
+            <ul className="space-y-3 text-[#D1C7BD] text-[15px]">
               {expertises.map((exp) => (
-                <li key={exp} className="hover:text-gray-300 transition-colors cursor-default">
+                <li key={exp} className="hover:text-[#FDFCF0] transition-colors cursor-default">
                   {exp}
                 </li>
               ))}
@@ -100,31 +101,31 @@ export default function Footer() {
           </div>
 
           <div className="space-y-6 lg:ml-auto">
-             <h4 className="text-white text-[12px] font-bold uppercase tracking-[0.3em] mb-8 flex items-center gap-2">
-              <span className="w-4 h-px bg-orange-500"></span> Contact
+             <h4 className="text-[#D4AF37] text-[12px] font-bold uppercase tracking-[0.3em] mb-8 flex items-center gap-2">
+              <span className="w-4 h-px bg-[#D4AF37]"></span> Contact
             </h4>
             <div className="space-y-5">
               <div className="flex gap-4 items-start group">
-                <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center shrink-0 mt-0.5">
-                  <MapPin size={14} className="text-orange-500" />
+                <div className="w-8 h-8 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <MapPin size={14} className="text-[#D4AF37]" />
                 </div>
-                <p className="text-gray-500 text-[15px] leading-relaxed">
+                <p className="text-[#D1C7BD] text-[15px] leading-relaxed">
                   456/786 Sajjad Bagh Colony,<br />Daulatganj, Lucknow-226003
                 </p>
               </div>
               <div className="flex gap-4 items-center group">
-                <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center shrink-0">
-                  <Phone size={14} className="text-orange-500" />
+                <div className="w-8 h-8 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center shrink-0">
+                  <Phone size={14} className="text-[#D4AF37]" />
                 </div>
-                <a href="tel:+919807606566" className="text-gray-500 text-[15px] hover:text-white transition-colors">
+                <a href="tel:+919807606566" className="text-[#D1C7BD] text-[15px] hover:text-[#FDFCF0] transition-colors">
                   +91 9807606566
                 </a>
               </div>
               <div className="flex gap-4 items-center group">
-                <div className="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center shrink-0">
-                  <Mail size={14} className="text-orange-500" />
+                <div className="w-8 h-8 rounded-lg bg-[#D4AF37]/10 flex items-center justify-center shrink-0">
+                  <Mail size={14} className="text-[#D4AF37]" />
                 </div>
-                <a href="mailto:bandhuenterprises.info@gmail.com" className="text-gray-500 text-[15px] hover:text-white transition-colors break-all">
+                <a href="mailto:bandhuenterprises.info@gmail.com" className="text-[#D1C7BD] text-[15px] hover:text-[#FDFCF0] transition-colors break-all">
                   bandhuenterprises.info@gmail.com
                 </a>
               </div>
@@ -133,18 +134,18 @@ export default function Footer() {
 
         </div>
 
-        <div className="border-t border-white/5 pt-5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-gray-600 text-[11px] tracking-[0.2em] uppercase font-medium">
+        <div className="border-t border-[#D4AF37]/20 pt-5 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-[#D1C7BD]/50 text-[11px] tracking-[0.2em] uppercase font-medium">
             © {currentYear} Bandhu Enterprises. All rights reserved.
           </p>
           
           <button 
             onClick={scrollToTop}
-            className="group flex items-center gap-3 text-[9px] uppercase tracking-[0.3em] font-bold text-gray-500 hover:text-orange-500 transition-all"
+            className="group flex items-center gap-3 text-[9px] uppercase tracking-[0.3em] font-bold text-[#D1C7BD] hover:text-[#D4AF37] transition-all"
           >
-            <span className='text-[11px]'>Back to top</span>
-            <div className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center group-hover:border-orange-500 transition-all shadow-lg group-hover:shadow-orange-500/20">
-              <ArrowUp size={14} className="group-hover:-translate-y-1 transition-transform" />
+            <span className='text-[11px] text-[#D1C7BD] group-hover:text-[#D4AF37]'>Back to top</span>
+            <div className="w-9 h-9 rounded-full border border-[#D4AF37]/30 flex items-center justify-center group-hover:border-[#D4AF37] transition-all shadow-lg group-hover:shadow-[#D4AF37]/20">
+              <ArrowUp size={14} className="text-[#D4AF37] group-hover:-translate-y-1 transition-transform" />
             </div>
           </button>
         </div>

@@ -26,7 +26,7 @@ export default function Header() {
 
   return (
     <nav className={`fixed w-full z-[100] transition-all duration-500 font-sans ${
-      scrolled ? 'bg-white/95 backdrop-blur-md py-3 shadow-md' : 'bg-transparent py-6'
+      scrolled ? 'bg-[#FDFCF0]/95 backdrop-blur-md py-3 shadow-md' : 'bg-transparent py-6'
     }`}>
       <div className="max-w-8xl mx-auto px-6 lg:px-12 flex justify-between items-center">
         
@@ -37,7 +37,7 @@ export default function Header() {
               alt="Bandhu Logo"
               className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300"
               onError={(e) => {
-                e.target.src = "/logo.png";
+                e.currentTarget.src = "/logo.png";
               }}
             />
           </div>
@@ -55,24 +55,24 @@ export default function Header() {
             <Link
               key={link.name}
               href={link.href}
-              className={`text-[13px] uppercase tracking-[0.2em] font-bold hover:text-orange-500 transition-all relative group/link ${
+              className={`text-[13px] uppercase tracking-[0.2em] font-bold hover:text-[#D4AF37] transition-all relative group/link ${
                 scrolled ? 'text-[#2D241E]' : 'text-white'
               }`}
             >
               {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover/link:w-full" />
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#D4AF37] transition-all duration-300 group-hover/link:w-full" />
             </Link>
           ))}
           <a 
             href="tel:+919807606566" 
-            className="bg-orange-500 text-white px-7 py-3 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:bg-orange-700 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-orange-900/20"
+            className="bg-[#2D241E] text-white px-7 py-3 rounded-full text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:bg-[#D4AF37] transition-all hover:scale-105 active:scale-95 shadow-lg"
           >
             <Phone size={14} fill="currentColor" /> Call Now
           </a>
         </div>
 
         <button 
-          className="md:hidden p-2 text-orange-500 focus:outline-none"
+          className={`md:hidden p-2 focus:outline-none ${scrolled ? 'text-[#D4AF37]' : 'text-white'}`}
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={35} strokeWidth={2.5} /> : <Menu size={35} strokeWidth={2.5} />}
@@ -85,7 +85,7 @@ export default function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-2xl overflow-hidden md:hidden"
+            className="absolute top-full left-0 w-full bg-[#FDFCF0] border-t border-[#E5E1C9] shadow-2xl overflow-hidden md:hidden"
           >
             <div className="p-8 flex flex-col gap-6">
               {navLinks.map((link, i) => (
@@ -98,22 +98,22 @@ export default function Header() {
                   <Link
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className="text-2xl font-serif font-bold text-[#2D241E] hover:text-orange-500 transition-colors block"
+                    className="text-2xl font-serif font-bold text-[#2D241E] hover:text-[#D4AF37] transition-colors block uppercase"
                   >
                     {link.name}
                   </Link>
                 </motion.div>
               ))}
-              <div className="h-px bg-gray-100 w-full my-2" />
+              <div className="h-px bg-[#E5E1C9] w-full my-2" />
               <motion.a 
                 initial={{ y: 10, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.5 }}
                 href="tel:+919807606566"
-                className="flex items-center gap-4 text-orange-500 font-bold text-xl"
+                className="flex items-center gap-4 text-[#2D241E] font-bold text-xl"
               >
-                <div className="bg-orange-100 p-3 rounded-full">
-                  <Phone size={24} fill="currentColor" />
+                <div className="bg-[#D4AF37]/20 p-3 rounded-full">
+                  <Phone size={24} fill="#D4AF37" className="text-[#D4AF37]" />
                 </div>
                 +91 9807606566
               </motion.a>
