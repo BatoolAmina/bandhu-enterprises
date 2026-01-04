@@ -24,7 +24,6 @@ const iconMap = {
   Construction: <Construction size={20} />
 };
 
-// HARDCODED STATIC DATA FOR IMMEDIATE SERVICE
 const STATIC_PROJECTS = [
   {
     _id: "695924fcd7fe9ca9cf8dc790",
@@ -182,7 +181,6 @@ export default function Projects() {
   return (
     <main className="bg-[#FDFCF0] overflow-hidden font-sans selection:bg-orange-100 selection:text-orange-900">
       
-      {/* Hero Section */}
       <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-[#1C1612]">
         <motion.div style={{ scale, opacity: opacityHeader }} className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/60 z-10" />
@@ -210,7 +208,6 @@ export default function Projects() {
         </div>
       </section>
 
-      {/* Tabs */}
       <section className="pt-20 px-8">
         <div className="flex flex-wrap justify-center gap-3">
           {categories.map((cat) => (
@@ -229,7 +226,6 @@ export default function Projects() {
         </div>
       </section>
 
-      {/* Projects Grid */}
       <section className="py-20 px-8 lg:px-24 max-w-[1400px] mx-auto min-h-[600px]">
         <motion.div layout className="flex flex-wrap justify-center gap-x-12 gap-y-24">
           <AnimatePresence mode="popLayout">
@@ -287,7 +283,6 @@ export default function Projects() {
         </motion.div>
       </section>
 
-      {/* Call to Action */}
       <section className="py-32 px-8 bg-[#FAF9E6] border-t border-[#E5E1C9]">
         <motion.div 
           initial={{ opacity: 0, y: 50 }}

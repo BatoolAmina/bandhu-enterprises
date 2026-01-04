@@ -3,14 +3,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Facebook, Instagram, Linkedin, Twitter, Mail, Phone, MapPin, ArrowUp } from 'lucide-react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation'; // Added for Admin detection
 
 export default function Footer() {
-  const pathname = usePathname();
-
-  // --- HIDE FOOTER ON ADMIN PAGES ---
-  if (pathname.startsWith('/admin')) return null;
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -43,7 +37,7 @@ export default function Footer() {
                   src="/logo.png" 
                   alt="Bandhu Logo"
                   className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-500"
-                  onError={(e) => { e.currentTarget.src = "/logo.png"; }}
+                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
                 />
               </div>
               <span className="font-serif font-bold tracking-tight text-xl md:text-2xl leading-none transition-colors group-hover:text-[#D4AF37] uppercase text-[#FDFCF0]">
@@ -65,6 +59,8 @@ export default function Footer() {
                 <motion.a 
                   key={i} 
                   href="#" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ y: -5, backgroundColor: "#D4AF37" }}
                   className="w-10 h-10 rounded-xl bg-[#FDFCF0]/10 flex items-center justify-center transition-all duration-300 group"
                 >

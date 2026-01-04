@@ -227,7 +227,6 @@ export default function Services() {
         </motion.div>
       </section>
 
-      {/* SPECIALIZED INDUSTRIAL SECTION */}
       <section className="py-24 bg-[#FAF9E6] px-8 lg:px-24 border-y border-[#E5E1C9]">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
           <motion.div 

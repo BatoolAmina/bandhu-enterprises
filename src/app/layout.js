@@ -33,6 +33,11 @@ export const metadata = {
   authors: [{ name: 'Bandhu Enterprises' }],
   creator: 'Bandhu Enterprises',
   publisher: 'Bandhu Enterprises',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   metadataBase: new URL('https://bandhuenterprises.in'),
   alternates: { canonical: '/' },
   openGraph: {
@@ -47,7 +52,6 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   const GA_MEASUREMENT_ID = 'G-9M4GHTWLSW';
-  
   const WHATSAPP_NUMBER = '919807606566'; 
 
   return (

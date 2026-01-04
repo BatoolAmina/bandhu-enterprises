@@ -3,15 +3,10 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone } from 'lucide-react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation'; // Added for Admin detection
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const pathname = usePathname(); // Get current URL path
-
-  // --- HIDE NAVBAR ON ADMIN PAGES ---
-  if (pathname.startsWith('/admin')) return null;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,13 +31,13 @@ export default function Header() {
       <div className="max-w-8xl mx-auto px-6 lg:px-12 flex justify-between items-center">
         
         <Link href="/" className="flex items-center gap-4 group">
-          <div className="relative w-20 h-20 md:w-20 md:h-20 flex-shrink-0">
+          <div className="relative w-16 h-16 md:w-20 md:h-20 flex-shrink-0">
             <img 
               src="/logo.png" 
               alt="Bandhu Logo"
               className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300"
               onError={(e) => {
-                e.currentTarget.src = "/logo.png";
+                e.currentTarget.style.display = 'none';
               }}
             />
           </div>
