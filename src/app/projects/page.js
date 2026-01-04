@@ -9,69 +9,175 @@ import {
 } from 'lucide-react';
 
 const iconMap = {
-  Construction: <Construction size={20} />,
-  Droplets: <Droplets size={20} />,
-  Waves: <Waves size={20} />,
-  FlaskConical: <FlaskConical size={20} />,
-  UtensilsCrossed: <UtensilsCrossed size={20} />,
-  Briefcase: <Briefcase size={20} />,
-  Home: <Home size={20} />,
-  Building: <Building size={20} />,
-  HardHat: <HardHat size={20} />,
   PencilRuler: <PencilRuler size={20} />,
   Layout: <Layout size={20} />,
   PanelTop: <PanelTop size={20} />,
-  Monitor: <Monitor size={20} />
+  Monitor: <Monitor size={20} />,
+  Droplets: <Droplets size={20} />,
+  HardHat: <HardHat size={20} />,
+  Building: <Building size={20} />,
+  Home: <Home size={20} />,
+  Briefcase: <Briefcase size={20} />,
+  UtensilsCrossed: <UtensilsCrossed size={20} />,
+  FlaskConical: <FlaskConical size={20} />,
+  Waves: <Waves size={20} />,
+  Construction: <Construction size={20} />
 };
 
+// HARDCODED STATIC DATA FOR IMMEDIATE SERVICE
+const STATIC_PROJECTS = [
+  {
+    _id: "695924fcd7fe9ca9cf8dc790",
+    title: "Architectural and Structural Drawings",
+    category: "Design & Planning",
+    location: "Regional Sites",
+    image: "/Architectural and Structural Drawings for Construction Projects.jpeg",
+    iconName: "PencilRuler",
+    description: "Providing the exact technical blueprints and maps needed for safe and precise construction."
+  },
+  {
+    _id: "695924fcd7fe9ca9cf8dc791",
+    title: "Interior Architectural Drawings",
+    category: "Design & Planning",
+    location: "Lucknow",
+    image: "/Interior Architectural Drawings & Planning.jpeg",
+    iconName: "Layout",
+    description: "Smart planning for office space to fit more desks and cabins comfortably in a small area."
+  },
+  {
+    _id: "695924fcd7fe9ca9cf8dc792",
+    title: "Aluminium Structural Glazing",
+    category: "Specialized Finishing",
+    location: "Aliganj, Lucknow",
+    image: "/Acp glazing structures and almunium works.jpg",
+    iconName: "PanelTop",
+    description: "Installing modern glass fronts and aluminum structures for a sleek, corporate building look."
+  },
+  {
+    _id: "695924fcd7fe9ca9cf8dc793",
+    title: "Custom 3D Led Glow Sign Board",
+    category: "Branding & Signage",
+    location: "Gomti Nagar, Lucknow",
+    image: "/Digital Glow Sign Board.png",
+    iconName: "Monitor",
+    description: "Installation of premium illuminated digital signboards for high visibility branding."
+  },
+  {
+    _id: "695924fcd7fe9ca9cf8dc78f",
+    title: "Waterproofing of swimming pools",
+    category: "Structural Protection",
+    location: "K.D. Singh Babu Stadium",
+    image: "/Waterproofing of swimming pools.jpeg",
+    iconName: "Droplets",
+    description: "Special chemical coating inside the pool walls to stop water leakage and keep the structure strong."
+  },
+  {
+    _id: "695924fcd7fe9ca9cf8dc78e",
+    title: "Waterproofing of Roof",
+    category: "Structural Protection",
+    location: "Hazratganj, Lucknow",
+    image: "/Waterproofing of Roof.jpeg",
+    iconName: "HardHat",
+    description: "Applying advanced protective layers on roofs to prevent water seepage and damage."
+  },
+  {
+    _id: "695924fcd7fe9ca9cf8dc78d",
+    title: "Interior Office Construction",
+    category: "Turnkey Projects",
+    location: "Gomti Nagar, Lucknow",
+    image: "/Interior Office Construction for a Multinational Company.jpeg",
+    iconName: "Building",
+    description: "Designing and building high-end workspaces for international companies with modern furniture."
+  },
+  {
+    _id: "695924fcd7fe9ca9cf8dc78c",
+    title: "Construction and interior of Buildings",
+    category: "Turnkey Projects",
+    location: "Aliganj, Lucknow",
+    image: "/interior.png",
+    iconName: "Home",
+    description: "Taking care of everything from the initial brickwork to the final beautiful interior finishes."
+  },
+  {
+    _id: "695924fcd7fe9ca9cf8dc78b",
+    title: "Modular Workstation",
+    category: "Interior Solutions",
+    location: "Aliganj, Lucknow",
+    image: "/modular-workstation.jpg",
+    iconName: "Briefcase",
+    description: "Smart, ergonomic modular desk systems designed for maximum productivity and space optimization."
+  },
+  {
+    _id: "695924fcd7fe9ca9cf8dc78a",
+    title: "Premium Modular Kitchen",
+    category: "Interior Solutions",
+    location: "Residential Sites",
+    image: "/Modular kitchen.jpg",
+    iconName: "UtensilsCrossed",
+    description: "Customized high-end modular kitchens with optimized storage and modern aesthetics."
+  },
+  {
+    _id: "695924fcd7fe9ca9cf8dc789",
+    title: "Scientific Soil Testing",
+    category: "Technical Services",
+    location: "Various Sites",
+    image: "/soil testing.jpg",
+    iconName: "FlaskConical",
+    description: "Comprehensive geological analysis to determine load-bearing capacity for structural safety."
+  },
+  {
+    _id: "695924fcd7fe9ca9cf8dc788",
+    title: "Construction of Sewage treatment Plants",
+    category: "Environmental Engineering",
+    location: "Indira Nagar, Lucknow",
+    image: "/Construction of Sewage treatment Plants.jpeg",
+    iconName: "Waves",
+    description: "Advanced systems built to clean and treat waste water safely for the environment."
+  },
+  {
+    _id: "695924fcd7fe9ca9cf8dc787",
+    title: "Construction of Rcc Over Head Tanks",
+    category: "Civil Infrastructure",
+    location: "Tanda",
+    image: "/Construction of Rcc Over Head Tanks.jpeg",
+    iconName: "Droplets",
+    description: "A very strong and high cement water tank built to supply water to the entire local area."
+  },
+  {
+    _id: "695924fcd7fe9ca9cf8dc786",
+    title: "Construction of Roads",
+    category: "Civil Infrastructure",
+    location: "Robertsganj, Uttar Pradesh",
+    image: "/Construction of Roads.jpeg",
+    iconName: "Construction",
+    description: "Professional road construction designed to handle heavy traffic and long-term use."
+  }
+];
+
 export default function Projects() {
-  const [projects, setProjects] = useState([]);
-  const [filteredProjects, setFilteredProjects] = useState([]);
+  const [filteredProjects, setFilteredProjects] = useState(STATIC_PROJECTS);
   const [activeCategory, setActiveCategory] = useState("All");
-  const [loading, setLoading] = useState(true);
-  
-  // Removed "Videos" from categories
-  const categories = ["All", "Civil Infrastructure", "Interior Solutions", "Turnkey Projects", "Structural Protection"];
+
+  const categories = [
+    "All", 
+    "Civil Infrastructure", 
+    "Turnkey Projects", 
+    "Interior Solutions", 
+    "Structural Protection", 
+    "Design & Planning"
+  ];
 
   const { scrollYProgress } = useScroll();
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 1.1]);
   const opacityHeader = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
 
   useEffect(() => {
-    async function fetchProjects() {
-      try {
-        const res = await fetch('/api/projects');
-        if (res.ok) {
-          const data = await res.json();
-          setProjects(data);
-          setFilteredProjects(data);
-        }
-      } catch (error) {
-        console.error("Portfolio fetch failed:", error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchProjects();
-  }, []);
-
-  useEffect(() => {
     if (activeCategory === "All") {
-      setFilteredProjects(projects);
+      setFilteredProjects(STATIC_PROJECTS);
     } else {
-      setFilteredProjects(projects.filter(p => p.category === activeCategory));
+      setFilteredProjects(STATIC_PROJECTS.filter(p => p.category === activeCategory));
     }
-  }, [activeCategory, projects]);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-[#FDFCF0] flex items-center justify-center">
-        <div className="text-[#D4AF37] font-serif uppercase tracking-[0.4em] animate-pulse text-xs font-bold">
-          Curating Portfolio...
-        </div>
-      </div>
-    );
-  }
+  }, [activeCategory]);
 
   return (
     <main className="bg-[#FDFCF0] overflow-hidden font-sans selection:bg-orange-100 selection:text-orange-900">
@@ -138,9 +244,7 @@ export default function Projects() {
                 className="group cursor-default w-full md:w-[calc(50%-24px)] lg:w-[calc(33.333%-32px)]"
               >
                 <div className="relative overflow-hidden rounded-[2.5rem] aspect-[4/5] bg-[#1C1612] mb-8 shadow-2xl border border-[#E5E1C9]">
-                  
-                  {/* Clean Static Image Rendering with Null Check */}
-                  {project.image && project.image.trim() !== "" ? (
+                  {project.image ? (
                     <>
                       <img 
                         src={project.image} 
@@ -155,7 +259,6 @@ export default function Projects() {
                     </div>
                   )}
                   
-                  {/* Project Labels */}
                   <div className="absolute bottom-10 left-10 right-10 flex justify-between items-end transform translate-y-4 group-hover:translate-y-0 transition-all duration-700">
                     <div className="bg-white/10 backdrop-blur-xl p-4 rounded-2xl border border-white/20 text-white shadow-xl">
                       {iconMap[project.iconName] || <Building size={20} />}
@@ -175,7 +278,7 @@ export default function Projects() {
                     {project.title}
                   </h3>
                   <p className="text-[#5C534E] text-[14px] leading-relaxed border-l-2 border-[#D4AF37]/30 pl-5 italic">
-                    {project.description || "Delivering architectural excellence across Lucknow."}
+                    {project.description}
                   </p>
                 </div>
               </motion.div>
@@ -186,75 +289,35 @@ export default function Projects() {
 
       {/* Call to Action */}
       <section className="py-32 px-8 bg-[#FAF9E6] border-t border-[#E5E1C9]">
-
         <motion.div 
-
           initial={{ opacity: 0, y: 50 }}
-
           whileInView={{ opacity: 1, y: 0 }}
-
           transition={{ duration: 1 }}
-
           viewport={{ once: true }}
-
           className="max-w-7xl mx-auto bg-[#1C1612] rounded-[4rem] p-12 md:p-20 flex flex-col lg:flex-row items-center gap-20 relative overflow-hidden"
-
         >
-
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#D4AF37]/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
-
-          
-
           <div className="flex-1 relative z-10 text-center lg:text-left">
-
             <h2 className="text-3xl md:text-4xl font-serif mb-8 leading-tight tracking-tight text-white uppercase">
-
               Ready to build the <span className="text-[#D4AF37]">future</span> with us?
-
             </h2>
-
             <p className="text-gray-400 mb-10 text-lg leading-relaxed font-light italic">
-
               "Foundation of Trust, Blueprint of Excellence"
-
             </p>
-
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-
-              <Link href="/contact" className="inline-flex items-center bg-[#D4AF37] text-white px-12 py-5 rounded-full font-bold text-xs uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all shadow-2xl">
-
-                Let's Build
-
-              </Link>
-
-            </motion.div>
-
+            <Link href="/contact" className="inline-flex items-center bg-[#D4AF37] text-white px-12 py-5 rounded-full font-bold text-[10px] uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all shadow-2xl">
+              Let's Build
+            </Link>
           </div>
-
-          
-
           <div className="flex-1 grid grid-cols-2 gap-6 w-full relative z-10 opacity-20 hidden md:grid">
-
-            <motion.div animate={{ y: [0, -30, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} className="space-y-6">
-
+            <div className="space-y-6">
               <div className="bg-[#D4AF37]/20 h-24 rounded-[2.5rem] border border-[#D4AF37]/20" />
-
               <div className="bg-white/15 h-44 rounded-[2.5rem] border border-white/10" />
-
-            </motion.div>
-
-            <motion.div animate={{ y: [0, 30, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }} className="space-y-6 pt-16">
-
+            </div>
+            <div className="space-y-6 pt-16">
               <div className="bg-white/15 h-44 rounded-[2.5rem] border border-white/10" />
-
               <div className="bg-[#D4AF37]/20 h-24 rounded-[2.5rem] border border-[#D4AF37]/20" />
-
-            </motion.div>
-
+            </div>
           </div>
-
         </motion.div>
-
       </section>
     </main>
   );

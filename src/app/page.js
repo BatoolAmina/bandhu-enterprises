@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, ShieldCheck, Zap, Users, ChevronDown, MapPin, Play, X } from 'lucide-react';
 import Link from 'next/link';
@@ -9,7 +9,7 @@ function Counter({ value, duration = 2.5 }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (isInView) {
       let start = 0;
       const end = parseInt(value);
@@ -33,35 +33,14 @@ function Counter({ value, duration = 2.5 }) {
 }
 
 export default function Home() {
-  const [stats, setStats] = useState({ years: "24", projects: "300" });
   const [selectedVideo, setSelectedVideo] = useState(null);
   
-  const backgroundVideos = [
-    "/Appasomy Associates.mp4"
-  ];
+  const backgroundVideos = ["/Appasomy Associates.mp4"];
   const [currentVideoIdx, setCurrentVideoIdx] = useState(0);
 
   const handleVideoEnd = () => {
     setCurrentVideoIdx((prev) => (prev + 1) % backgroundVideos.length);
   };
-
-  useEffect(() => {
-    async function fetchStats() {
-      try {
-        const res = await fetch('/api/founder-stats');
-        if (res.ok) {
-          const data = await res.json();
-          setStats({
-            years: data.years || "24",
-            projects: data.projects || "300"
-          });
-        }
-      } catch (error) {
-        console.error("Error fetching live stats:", error);
-      }
-    }
-    fetchStats();
-  }, []);
 
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 1000], [0, 400]);
@@ -93,7 +72,7 @@ export default function Home() {
 
   return (
     <main className="bg-[#FDFCF0] font-sans selection:bg-orange-100 selection:text-orange-900">
-      
+    
       <section className="relative h-[95vh] flex items-center justify-center overflow-hidden bg-[#1A1A1A]">
         <div className="absolute inset-0 z-0">
           <motion.div style={{ y: y1, scale }} className="absolute inset-0">
@@ -170,13 +149,13 @@ export default function Home() {
               <motion.div variants={staggerContainer} className="grid grid-cols-2 gap-10 border-t border-[#E5E1C9] pt-10">
                 <motion.div variants={fadeInUp}>
                   <h4 className="font-bold text-3xl md:text-5xl text-[#2D241E]">
-                    <Counter value={stats.years} />+
+                    <Counter value="15" />+
                   </h4>
                   <p className="text-[#8B837E] text-[12px] uppercase tracking-[0.2em] font-bold mt-2">Years of Excellence</p>
                 </motion.div>
                 <motion.div variants={fadeInUp}>
                   <h4 className="font-bold text-3xl md:text-5xl text-[#2D241E]">
-                    <Counter value={stats.projects} />+
+                    <Counter value="300" />+
                   </h4>
                   <p className="text-[#8B837E] text-[12px] uppercase tracking-[0.2em] font-bold mt-2">Successful Projects</p>
                 </motion.div>
@@ -212,7 +191,7 @@ export default function Home() {
                 category: "Turnkey Interiors",
                 url: "/Gomti Nagar Residential.mp4",
                 location: "Gomti Nagar, Lucknow",
-                description: "A luxury turnkey interior overhaul featuring architectural back-lit marble feature walls and custom geometric wooden paneling for a modern residential landscape."
+                description: "A luxury turnkey interior overhaul featuring architectural back-lit marble feature walls and custom geometric wooden paneling."
               },
               {
                 id: 2,
@@ -220,7 +199,7 @@ export default function Home() {
                 category: "Interior Solutions",
                 url: "/Modular Kitchen.mp4",
                 location: "Lucknow, Uttar Pradesh",
-                description: "A high-end modular kitchen featuring gloss seafoam and obsidian cabinetry with integrated LED glass displays and emerald granite countertops."
+                description: "A high-end modular kitchen featuring gloss seafoam and obsidian cabinetry with integrated LED glass displays."
               }
             ].map((video) => (
               <motion.div 
@@ -265,7 +244,6 @@ export default function Home() {
             >
               <X size={40} />
             </button>
-            
             <motion.div 
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
@@ -284,251 +262,126 @@ export default function Home() {
       </AnimatePresence>
 
       <section className="py-24 bg-[#FAF9E6] px-6 lg:px-24">
-
         <div className="max-w-7xl mx-auto">
-
           <motion.div 
-
             initial={{ opacity: 0, y: 20 }}
-
             whileInView={{ opacity: 1, y: 0 }}
-
             viewport={{ once: true }}
-
             className="text-center mb-20"
-
           >
-
             <h3 className="text-2xl md:text-3xl font-serif text-[#2D241E] uppercase tracking-tight">The Bandhu Enterprises Standard</h3>
-
             <motion.div 
-
               initial={{ width: 0 }}
-
               whileInView={{ width: "4rem" }}
-
               transition={{ duration: 1, delay: 0.5 }}
-
               className="h-1 bg-[#D4AF37] mx-auto mt-4" 
-
             />
-
           </motion.div>
-
-
 
           <motion.div 
-
             variants={staggerContainer}
-
             initial="initial"
-
             whileInView="whileInView"
-
             className="grid sm:grid-cols-2 md:grid-cols-3 gap-8"
-
           >
-
             {[
-
               { icon: <ShieldCheck size={40}/>, title: "Structural Integrity", desc: "Our RCC designs are engineered to exceed safety benchmarks, ensuring stability that spans decades." },
-
               { icon: <Zap size={40}/>, title: "Swift Execution", desc: "Optimized project management flows that guarantee on-time delivery without compromising on craftsmanship." },
-
               { icon: <Users size={40}/>, title: "Client Focused", desc: "A collaborative approach ensuring transparent communication and designs that perfectly suit your lifestyle." }
-
             ].map((item, index) => (
-
               <motion.div 
-
                 key={index}
-
                 variants={fadeInUp}
-
                 whileHover={{ y: -10 }}
-
                 className="bg-white p-12 rounded-3xl shadow-sm hover:shadow-2xl transition-all duration-500 border border-[#E5E1C9] group flex flex-col items-center text-center"
-
               >
-
                 <div className="mb-8 w-20 h-20 bg-[#FDFCF0] rounded-[2rem] flex items-center justify-center transition-all duration-700 group-hover:bg-[#D4AF37] group-hover:rotate-[360deg] group-hover:rounded-2xl shadow-inner">
-
                   <div className="text-[#D4AF37] transition-colors duration-500 group-hover:text-white">
-
                     {item.icon}
-
                   </div>
-
                 </div>
-
                 <h4 className="text-lg font-serif mb-4 text-[#2D241E] font-bold uppercase tracking-[0.2em] transition-colors duration-500 group-hover:text-[#D4AF37]">{item.title}</h4>
-
                 <p className="text-[#5C534E] text-[13px] leading-relaxed group-hover:text-[#2D241E]">{item.desc}</p>
-
               </motion.div>
-
             ))}
-
           </motion.div>
-
         </div>
-
       </section>
-
-
-
-      {/* FINAL CTA */}
 
       <section className="py-24 px-8 lg:px-24 text-center bg-[#FDFCF0]">
-
         <motion.div 
-
           initial={{ opacity: 0, scale: 0.9 }}
-
           whileInView={{ opacity: 1, scale: 1 }}
-
           viewport={{ once: true }}
-
           transition={{ duration: 0.8 }}
-
           className="max-w-3xl mx-auto"
-
         > 
-
           <h2 className="text-3xl md:text-4xl font-serif mb-8 leading-tight tracking-tight text-[#2D241E] uppercase">
-
             Ready to build your next <span className="text-[#D4AF37]">landmark?</span>
-
           </h2>
-
           <p className="text-[#5C534E] mb-10 text-base md:text-lg leading-relaxed italic">
-
             "Foundation of Trust, Blueprint of Excellence"
-
           </p>
-
           <motion.a 
-
             href="/contact" 
-
             whileHover={{ scale: 1.05 }}
-
             whileTap={{ scale: 0.95 }}
-
             className="inline-block bg-[#2D241E] text-white px-10 py-4 rounded-full font-bold hover:bg-[#D4AF37] transition-all shadow-xl uppercase text-xs tracking-widest"
-
           >
-
             Request a Consultation
-
           </motion.a>
-
         </motion.div>
-
       </section>
 
-
-
-      {/* LOCATION SECTION */}
-
       <section className="py-24 px-6 lg:px-24 bg-[#FDFCF0] border-t border-[#E5E1C9]">
-
         <div className="max-w-7xl mx-auto">
-
           <motion.div 
-
             initial={{ opacity: 0, x: -30 }}
-
             whileInView={{ opacity: 1, x: 0 }}
-
             transition={{ duration: 0.8 }}
-
             viewport={{ once: true }}
-
             className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8"
-
           >
-
             <div className="flex items-start gap-6">
-
               <div className="bg-[#D4AF37]/10 p-4 rounded-2xl text-[#D4AF37] shadow-sm">
-
                 <MapPin size={32} />
-
               </div>
-
               <div>
-
                 <span className="text-[#D4AF37] font-bold tracking-widest uppercase text-[10px]">Headquarters</span>
-
                 <h3 className="text-2xl md:text-4xl font-serif mt-2 text-[#2D241E] uppercase tracking-tight">Daulatganj, Lucknow</h3>
-
                 <p className="text-[#5C534E] text-sm mt-3 max-w-xs leading-relaxed">
-
                   456/786 Sajjad Bagh Colony, Daulatganj, Lucknow, Uttar Pradesh 226003
-
                 </p>
-
               </div>
-
             </div>
-
             <motion.div whileHover={{ x: 10 }}>
-
               <Link 
-
                 href="https://maps.google.com/?q=Bandhu+Enterprises+Lucknow" 
-
                 target="_blank" 
-
                 className="text-[#D4AF37] font-bold text-xs uppercase tracking-widest flex items-center gap-3 group"
-
               >
-
                 Open in Google Maps <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-
               </Link>
-
             </motion.div>
-
           </motion.div>
-
-
 
           <motion.div 
-
             initial={{ opacity: 0, y: 40 }}
-
             whileInView={{ opacity: 1, y: 0 }}
-
             transition={{ duration: 1 }}
-
             viewport={{ once: true }}
-
             className="h-[500px] w-full rounded-[2.5rem] overflow-hidden shadow-2xl border border-[#E5E1C9] relative group"
-
           >
-
             <iframe 
-
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.4632832967265!2d80.8931189!3d26.8887641!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3999557f9202720b%3A0xc48398df9813589c!2s456%2F786%2C%20Sajjad%20Bagh%20Colony%2C%20Daulatganj%2C%20Lucknow%2C%20Uttar%20Pradesh%20226003!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
-
               className="w-full h-full transition-all duration-1000 ease-in-out"
-
               style={{ border: 0 }} 
-
               loading="lazy" 
-
               allowFullScreen=""
-
               referrerPolicy="no-referrer-when-downgrade"
-
             ></iframe>
-
           </motion.div>
-
         </div>
-
       </section>
     </main>
   );
