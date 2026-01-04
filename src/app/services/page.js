@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { 
   PencilRuler, 
@@ -13,12 +13,47 @@ import {
   Monitor,
   Component,
   FlaskConical,
-  UtensilsCrossed
+  UtensilsCrossed,
+  Briefcase
 } from 'lucide-react';
 
+const iconMap = {
+  PencilRuler: <PencilRuler size={32} />,
+  ShieldCheck: <ShieldCheck size={32} />,
+  HardHat: <HardHat size={32} />,
+  CheckCircle2: <CheckCircle2 size={32} />,
+  Droplets: <Droplets size={32} />,
+  Construction: <Construction size={32} />,
+  Layout: <Layout size={32} />,
+  Building: <Building size={32} />,
+  Monitor: <Monitor size={32} />,
+  Component: <Component size={32} />,
+  FlaskConical: <FlaskConical size={32} />,
+  UtensilsCrossed: <UtensilsCrossed size={32} />
+};
+
 export default function Services() {
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
   const { scrollYProgress } = useScroll();
   const scale = useTransform(scrollYProgress, [0, 0.3], [1, 1.1]);
+
+  useEffect(() => {
+    async function fetchServices() {
+      try {
+        const res = await fetch('/api/services');
+        if (res.ok) {
+          const data = await res.json();
+          setServices(data);
+        }
+      } catch (error) {
+        console.error("Error loading dynamic services:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchServices();
+  }, []);
 
   const fadeInUp = {
     initial: { opacity: 0, y: 40 },
@@ -31,113 +66,28 @@ export default function Services() {
     initial: { opacity: 0 },
     whileInView: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.1
-      }
+      transition: { staggerChildren: 0.1, delayChildren: 0.1 }
     },
     viewport: { once: true }
   };
 
-  const services = [
-    {
-      category: "Planning & Design",
-      title: "Architectural Design",
-      icon: <PencilRuler size={32} />,
-      desc: "Comprehensive master planning and technical layouts for residential and commercial spaces.",
-      items: ["2D/3D Concept Maps", "Regulatory Compliance", "Space Optimization"]
-    },
-    {
-      category: "Planning & Design",
-      title: "Structural Design",
-      icon: <HardHat size={32} />,
-      desc: "Advanced structural engineering blueprints ensuring maximum safety and integrity.",
-      items: ["Load Analysis", "Reinforcement Details", "Safety Audits"]
-    },
-
-    {
-      category: "Interior Excellence",
-      title: "Interior Works",
-      icon: <Layout size={32} />,
-      desc: "High-end interior execution for corporate offices and luxury residential properties.",
-      items: ["Corporate Fit-outs", "Bespoke Furnishing", "Finishing Excellence"]
-    },
-    {
-      category: "Interior Excellence",
-      title: "Modular Interior Kitchen",
-      icon: <UtensilsCrossed size={32} />,
-      desc: "Modern, space-efficient modular kitchens designed for functionality and premium aesthetics.",
-      items: ["Custom Cabinetry", "Ergonomic Layouts", "High-End Fittings"]
-    },
-    {
-      category: "Interior Excellence",
-      title: "Modular Workstations",
-      icon: <Component size={32} />,
-      desc: "Ergonomic and efficient office furniture solutions optimized for modern workflows.",
-      items: ["Modular Desking", "Acoustic Partitions", "Ergonomic Setup"]
-    },
-
-    {
-      category: "Civil Engineering",
-      title: "RCC Construction",
-      icon: <Building size={32} />,
-      desc: "Heavy-duty structural frames and reinforced concrete engineering for high-rise durability.",
-      items: ["Structural Slabs", "High-Rise Frameworks", "Precision Casting"]
-    },
-    {
-      category: "Civil Engineering",
-      title: "Road Construction",
-      icon: <Construction size={32} />,
-      desc: "Industrial-grade roadway engineering designed for high load capacity and longevity.",
-      items: ["Bituminous Roadwork", "Concrete Pavements", "Infrastructure Links"]
-    },
-
-    {
-      category: "Specialized Systems",
-      title: "Sewage Treatment Plants",
-      icon: <CheckCircle2 size={32} />,
-      desc: "Sustainable water management systems ensuring environmental compliance and hygiene.",
-      items: ["STP/ETP Installation", "Technical Maintenance", "Eco-Friendly Systems"]
-    },
-    {
-      category: "Specialized Systems",
-      title: "Structural Glazing",
-      icon: <ShieldCheck size={32} />,
-      desc: "Premium exterior glass facades and ACP cladding for modern architectural aesthetics.",
-      items: ["Glass Facades", "ACP Panel Cladding", "Weather Proofing"]
-    },
-
-    {
-      category: "Technical & Protection",
-      title: "Waterproofing Solutions",
-      icon: <Droplets size={32} />,
-      desc: "Multi-layer chemical treatments to protect structures from water damage and seepage.",
-      items: ["Roof Liquid Membranes", "Swimming Pool Lining", "Basement Protection"]
-    },
-    {
-      category: "Technical & Protection",
-      title: "Soil Testing",
-      icon: <FlaskConical size={32} />,
-      desc: "Scientific geological analysis to determine load-bearing capacity and foundation requirements.",
-      items: ["Geotechnical Survey", "Bearing Capacity", "Moisture Analysis"]
-    },
-    {
-      category: "Technical & Protection",
-      title: "Glow Sign Board",
-      icon: <Monitor size={32} />,
-      desc: "Custom 3D acrylic and LED branding solutions for high-visibility business presence.",
-      items: ["LED Branding", "3D Acrylic Design", "External Signage"]
-    }
-  ];
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#FDFCF0] flex items-center justify-center">
+        <div className="text-[#D4AF37] font-serif uppercase tracking-[0.3em] animate-pulse text-xs font-bold">
+          Synchronizing Capabilities...
+        </div>
+      </div>
+    );
+  }
 
   return (
     <main className="bg-[#FDFCF0] overflow-hidden font-sans selection:bg-orange-100 selection:text-orange-900">
-
       <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-[#1C1612]">
         <motion.div style={{ scale }} className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/60 z-10" />
           <img 
-            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070" 
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070" 
             className="w-full h-full object-cover transition-all duration-1000"
             alt="Engineering Background"
           />
@@ -186,13 +136,13 @@ export default function Services() {
         >
           {services.map((service, index) => (
             <motion.div
-              key={index}
+              key={service._id || index}
               variants={fadeInUp}
               whileHover={{ y: -8 }}
               className="bg-white p-10 rounded-3xl border border-[#E5E1C9] group transition-all duration-500 hover:shadow-2xl hover:bg-[#FAF9E6] flex flex-col items-center text-center relative overflow-hidden"
             >
               <div className="absolute top-0 right-0 bg-[#D4AF37]/10 px-4 py-1 rounded-bl-xl text-[10px] font-bold uppercase tracking-widest text-[#D4AF37]">
-                {service.category}
+                {service.category || "Professional Service"}
               </div>
               
               <motion.div 
@@ -200,23 +150,31 @@ export default function Services() {
                 transition={{ duration: 0.6 }}
                 className="mb-6 w-16 h-16 bg-[#FDFCF0] rounded-2xl flex items-center justify-center shadow-sm text-[#D4AF37] group-hover:bg-[#D4AF37] group-hover:text-white transition-all duration-500 border border-[#E5E1C9]/50"
               >
-                {service.icon}
+                {iconMap[service.iconName] || <Briefcase size={32} />}
               </motion.div>
-              <h3 className="text-lg font-serif mb-3 text-[#2D241E] font-bold uppercase tracking-widest leading-tight">{service.title}</h3>
-              <p className="text-[#5C534E] text-sm mb-8 leading-relaxed max-w-xs group-hover:text-[#2D241E]">{service.desc}</p>
+
+              <h3 className="text-lg font-serif mb-3 text-[#2D241E] font-bold uppercase tracking-widest leading-tight">
+                {service.title}
+              </h3>
               
-              <div className="w-full space-y-3 pt-6 border-t border-[#E5E1C9]">
-                {service.items.map((item, idx) => (
-                  <motion.div 
-                    key={idx} 
-                    whileHover={{ x: 5, color: "#D4AF37" }}
-                    className="flex items-center justify-center gap-3 text-[#2D241E] text-[12px] font-medium transition-colors"
-                  >
-                    <CheckCircle2 size={12} className="text-[#D4AF37]" />
-                    <span>{item}</span>
-                  </motion.div>
-                ))}
-              </div>
+              <p className="text-[#5C534E] text-sm mb-8 leading-relaxed max-w-xs group-hover:text-[#2D241E]">
+                {service.description}
+              </p>
+              
+              {service.items && service.items.length > 0 && (
+                <div className="w-full space-y-3 pt-6 border-t border-[#E5E1C9]">
+                  {service.items.map((item, idx) => (
+                    <motion.div 
+                      key={idx} 
+                      whileHover={{ x: 5, color: "#D4AF37" }}
+                      className="flex items-center justify-center gap-3 text-[#2D241E] text-[12px] font-medium transition-colors"
+                    >
+                      <CheckCircle2 size={12} className="text-[#D4AF37]" />
+                      <span>{item}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
             </motion.div>
           ))}
         </motion.div>
@@ -239,14 +197,14 @@ export default function Services() {
               Our engineering team ensures structural longevity and compliance with the highest environmental standards.
             </p>
             <div className="grid grid-cols-2 gap-6 pt-4 border-t border-[#E5E1C9]">
-              <motion.div whileHover={{ y: -5 }} className="cursor-default">
+              <div className="cursor-default">
                 <p className="text-[#D4AF37] font-bold text-xl mb-1 uppercase tracking-tighter">Gold Standard</p>
                 <p className="text-[#8B837E] text-[12px] uppercase font-bold tracking-widest">Quality Assurance</p>
-              </motion.div>
-              <motion.div whileHover={{ y: -5 }} className="cursor-default">
+              </div>
+              <div className="cursor-default">
                 <p className="text-[#2D241E] font-bold text-xl mb-1 uppercase tracking-tighter">Turnkey</p>
                 <p className="text-[#8B837E] text-[12px] uppercase font-bold tracking-widest">End-to-End Delivery</p>
-              </motion.div>
+              </div>
             </div>
           </motion.div>
           

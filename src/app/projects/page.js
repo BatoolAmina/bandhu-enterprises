@@ -1,163 +1,82 @@
 "use client";
-import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { 
-  HardHat, 
-  Home, 
-  Droplets, 
-  MapPin, 
-  PencilRuler, 
-  Building, 
-  Construction, 
-  Waves,
-  Layout,
-  Monitor,
-  Briefcase,
-  PanelTop,
-  UtensilsCrossed,
-  FlaskConical
+  MapPin, Construction, Droplets, Waves, FlaskConical, 
+  UtensilsCrossed, Briefcase, Home, Building, HardHat, 
+  PencilRuler, Layout, PanelTop, Monitor
 } from 'lucide-react';
 
+const iconMap = {
+  Construction: <Construction size={20} />,
+  Droplets: <Droplets size={20} />,
+  Waves: <Waves size={20} />,
+  FlaskConical: <FlaskConical size={20} />,
+  UtensilsCrossed: <UtensilsCrossed size={20} />,
+  Briefcase: <Briefcase size={20} />,
+  Home: <Home size={20} />,
+  Building: <Building size={20} />,
+  HardHat: <HardHat size={20} />,
+  PencilRuler: <PencilRuler size={20} />,
+  Layout: <Layout size={20} />,
+  PanelTop: <PanelTop size={20} />,
+  Monitor: <Monitor size={20} />
+};
+
 export default function Projects() {
+  const [projects, setProjects] = useState([]);
+  const [filteredProjects, setFilteredProjects] = useState([]);
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [loading, setLoading] = useState(true);
+  
+  // Removed "Videos" from categories
+  const categories = ["All", "Civil Infrastructure", "Interior Solutions", "Turnkey Projects", "Structural Protection"];
+
   const { scrollYProgress } = useScroll();
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 1.1]);
   const opacityHeader = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
 
-  const projectList = [
-    {
-      title: "Construction of Roads",
-      category: "Civil Infrastructure",
-      location: "Robertsganj, Uttar Pradesh",
-      image: "/Construction of Roads.jpeg",
-      icon: <Construction size={20} />,
-      description: "Professional road construction designed to handle heavy traffic and long-term use."
-    },
-    {
-      title: "Construction of Rcc Over Head Tanks",
-      category: "Civil Infrastructure",
-      location: "Tanda",
-      image: "/Construction of Rcc Over Head Tanks.jpeg",
-      icon: <Droplets size={20} />,
-      description: "A very strong and high cement water tank built to supply water to the entire local area."
-    },
-    {
-      title: "Construction of Sewage treatment Plants",
-      category: "Environmental Engineering",
-      location: "Indira Nagar, Lucknow",
-      image: "/Construction of Sewage treatment Plants.jpeg",
-      icon: <Waves size={20} />,
-      description: "Advanced systems built to clean and treat waste water safely for the environment."
-    },
-    {
-      title: "Scientific Soil Testing",
-      category: "Technical Services",
-      location: "Various Sites",
-      image: "/soil testing.jpg",
-      icon: <FlaskConical size={20} />,
-      description: "Comprehensive geological analysis to determine load-bearing capacity for structural safety."
-    },
-
-    {
-      title: "Premium Modular Kitchen",
-      category: "Interior Solutions",
-      location: "Residential Sites",
-      image: "/Modular kitchen.jpg",
-      icon: <UtensilsCrossed size={20} />,
-      description: "Customized high-end modular kitchens with optimized storage and modern aesthetics."
-    },
-    {
-      title: "Modular Workstation",
-      category: "Interior Solutions",
-      location: "Aliganj, Lucknow",
-      image: "/modular-workstation.jpg",
-      icon: <Briefcase size={20} />,
-      description: "Smart, ergonomic modular desk systems designed for maximum productivity and space optimization."
-    },
-    {
-      title: "Construction and interior of Buildings",
-      category: "Turnkey Projects",
-      location: "Aliganj, Lucknow",
-      image: "/interior.png",
-      icon: <Home size={20} />,
-      description: "Taking care of everything from the initial brickwork to the final beautiful interior finishes."
-    },
-    {
-      title: "Interior Office Construction",
-      category: "Turnkey Projects",
-      location: "Gomti Nagar, Lucknow",
-      image: "/Interior Office Construction for a Multinational Company.jpeg",
-      icon: <Building size={20} />,
-      description: "Designing and building high-end workspaces for international companies with modern furniture."
-    },
-
-    {
-      title: "Waterproofing of Roof",
-      category: "Structural Protection",
-      location: "Hazratganj, Lucknow",
-      image: "/Waterproofing of Roof.jpeg",
-      icon: <HardHat size={20} />,
-      description: "Applying advanced protective layers on roofs to prevent water seepage and damage."
-    },
-    {
-      title: "Waterproofing of swimming pools",
-      category: "Structural Protection",
-      location: "K.D. Singh Babu Stadium",
-      image: "/Waterproofing of swimming pools.jpeg",
-      icon: <Droplets size={20} />,
-      description: "Special chemical coating inside the pool walls to stop water leakage and keep the structure strong."
-    },
-    {
-      title: "Architectural and Structural Drawings",
-      category: "Design & Planning",
-      location: "Regional Sites",
-      image: "/Architectural and Structural Drawings for Construction Projects.jpeg",
-      icon: <PencilRuler size={20} />,
-      description: "Providing the exact technical blueprints and maps needed for safe and precise construction."
-    },
-    {
-      title: "Interior Architectural Drawings",
-      category: "Design & Planning",
-      location: "Lucknow",
-      image: "/Interior Architectural Drawings & Planning.jpeg",
-      icon: <Layout size={20} />,
-      description: "Smart planning for office space to fit more desks and cabins comfortably in a small area."
-    },
-    {
-      title: "Aluminium Structural Glazing",
-      category: "Specialized Finishing",
-      location: "Aliganj, Lucknow",
-      image: "/Acp glazing structures and almunium works.jpg",
-      icon: <PanelTop size={20} />,
-      description: "Installing modern glass fronts and aluminum structures for a sleek, corporate building look."
-    },
-    {
-      title: "Custom 3D Led Glow Sign Board",
-      category: "Branding & Signage",
-      location: "Gomti Nagar, Lucknow",
-      image: "/Digital Glow Sign Board.png",
-      icon: <Monitor size={20} />,
-      description: "Installation of premium illuminated digital signboards for high visibility branding."
+  useEffect(() => {
+    async function fetchProjects() {
+      try {
+        const res = await fetch('/api/projects');
+        if (res.ok) {
+          const data = await res.json();
+          setProjects(data);
+          setFilteredProjects(data);
+        }
+      } catch (error) {
+        console.error("Portfolio fetch failed:", error);
+      } finally {
+        setLoading(false);
+      }
     }
-  ];
+    fetchProjects();
+  }, []);
 
-  const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, margin: "-50px" },
-    transition: { duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98] }
-  };
-
-  const staggerContainer = {
-    initial: { opacity: 0 },
-    whileInView: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 }
+  useEffect(() => {
+    if (activeCategory === "All") {
+      setFilteredProjects(projects);
+    } else {
+      setFilteredProjects(projects.filter(p => p.category === activeCategory));
     }
-  };
+  }, [activeCategory, projects]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#FDFCF0] flex items-center justify-center">
+        <div className="text-[#D4AF37] font-serif uppercase tracking-[0.4em] animate-pulse text-xs font-bold">
+          Curating Portfolio...
+        </div>
+      </div>
+    );
+  }
 
   return (
     <main className="bg-[#FDFCF0] overflow-hidden font-sans selection:bg-orange-100 selection:text-orange-900">
+      
+      {/* Hero Section */}
       <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-[#1C1612]">
         <motion.div style={{ scale, opacity: opacityHeader }} className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/60 z-10" />
@@ -179,111 +98,163 @@ export default function Projects() {
               The <span className="text-[#D4AF37]">Portfolio.</span>
             </h1>
             <p className="text-xs md:text-sm text-gray-300 leading-relaxed max-w-lg mx-auto uppercase tracking-widest italic">
-              "Foundation of Trust, Blueprint of Excellence"
+              "Visualizing Structural Mastery and Architectural Excellence"
             </p>
           </motion.div>
         </div>
       </section>
 
-      <section className="py-32 px-8 lg:px-24 max-w-[1400px] mx-auto">
-        <motion.div 
-          variants={staggerContainer}
-          initial="initial"
-          whileInView="whileInView"
-          viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-x-12 gap-y-24"
-        >
-          {projectList.map((project, index) => (
-            <motion.div 
-              key={index} 
-              variants={fadeInUp}
-              className="group cursor-default w-full md:w-[calc(50%-24px)] lg:w-[calc(33.333%-32px)]"
+      {/* Tabs */}
+      <section className="pt-20 px-8">
+        <div className="flex flex-wrap justify-center gap-3">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all border ${
+                activeCategory === cat 
+                ? 'bg-[#1C1612] text-[#D4AF37] border-[#1C1612] shadow-xl' 
+                : 'bg-white text-gray-400 border-gray-100 hover:border-[#D4AF37]/30'
+              }`}
             >
-              <div className="relative overflow-hidden rounded-[2.5rem] aspect-[4/5] bg-white mb-8 shadow-2xl transition-all duration-500 group-hover:shadow-[#D4AF37]/20 border border-[#E5E1C9]">
-                <img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1C1612] via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity duration-700" />
-                
-                <div className="absolute bottom-10 left-10 right-10 flex justify-between items-end transform translate-y-4 group-hover:translate-y-0 transition-all duration-700">
-                  <motion.div 
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    className="bg-white/10 backdrop-blur-xl p-4 rounded-2xl border border-white/20 text-white shadow-xl"
-                  >
-                    {project.icon}
-                  </motion.div>
-                  <div className="flex items-center gap-2 text-white font-bold text-[9px] uppercase tracking-widest bg-[#D4AF37] px-5 py-2.5 rounded-full shadow-lg">
-                    <MapPin size={12} />
-                    {project.location}
+              {cat}
+            </button>
+          ))}
+        </div>
+      </section>
+
+      {/* Projects Grid */}
+      <section className="py-20 px-8 lg:px-24 max-w-[1400px] mx-auto min-h-[600px]">
+        <motion.div layout className="flex flex-wrap justify-center gap-x-12 gap-y-24">
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project) => (
+              <motion.div 
+                key={project._id} 
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.5 }}
+                className="group cursor-default w-full md:w-[calc(50%-24px)] lg:w-[calc(33.333%-32px)]"
+              >
+                <div className="relative overflow-hidden rounded-[2.5rem] aspect-[4/5] bg-[#1C1612] mb-8 shadow-2xl border border-[#E5E1C9]">
+                  
+                  {/* Clean Static Image Rendering with Null Check */}
+                  {project.image && project.image.trim() !== "" ? (
+                    <>
+                      <img 
+                        src={project.image} 
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#1C1612] via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity duration-700" />
+                    </>
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-gray-900">
+                       <Building size={48} className="text-gray-700" />
+                    </div>
+                  )}
+                  
+                  {/* Project Labels */}
+                  <div className="absolute bottom-10 left-10 right-10 flex justify-between items-end transform translate-y-4 group-hover:translate-y-0 transition-all duration-700">
+                    <div className="bg-white/10 backdrop-blur-xl p-4 rounded-2xl border border-white/20 text-white shadow-xl">
+                      {iconMap[project.iconName] || <Building size={20} />}
+                    </div>
+                    <div className="flex items-center gap-2 text-white font-bold text-[9px] uppercase tracking-widest bg-[#D4AF37] px-5 py-2.5 rounded-full shadow-lg">
+                      <MapPin size={12} />
+                      {project.location}
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="px-4 text-center sm:text-left">
-                <motion.span 
-                  className="text-[#D4AF37] text-[10px] font-bold uppercase tracking-[0.4em] block mb-4"
-                >
-                  {project.category}
-                </motion.span>
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-2xl font-serif text-[#2D241E] group-hover:text-[#D4AF37] transition-colors leading-tight uppercase tracking-tight">
+                <div className="px-4 text-center sm:text-left">
+                  <span className="text-[#D4AF37] text-[10px] font-bold uppercase tracking-[0.4em] block mb-4">
+                    {project.category}
+                  </span>
+                  <h3 className="text-2xl font-serif text-[#2D241E] group-hover:text-[#D4AF37] transition-colors leading-tight uppercase tracking-tight mb-4">
                     {project.title}
                   </h3>
+                  <p className="text-[#5C534E] text-[14px] leading-relaxed border-l-2 border-[#D4AF37]/30 pl-5 italic">
+                    {project.description || "Delivering architectural excellence across Lucknow."}
+                  </p>
                 </div>
-                <p className="text-[#5C534E] text-[15px] leading-relaxed border-l-2 border-[#D4AF37]/30 pl-5 italic mx-auto sm:mx-0">
-                  {project.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </motion.div>
       </section>
-      
+
+      {/* Call to Action */}
       <section className="py-32 px-8 bg-[#FAF9E6] border-t border-[#E5E1C9]">
+
         <motion.div 
+
           initial={{ opacity: 0, y: 50 }}
+
           whileInView={{ opacity: 1, y: 0 }}
+
           transition={{ duration: 1 }}
+
           viewport={{ once: true }}
-          className="max-w-7xl mx-auto bg-[#1C1612] rounded-[4rem] p-12 md:p-10 flex flex-col lg:flex-row items-center gap-20 relative overflow-hidden"
+
+          className="max-w-7xl mx-auto bg-[#1C1612] rounded-[4rem] p-12 md:p-20 flex flex-col lg:flex-row items-center gap-20 relative overflow-hidden"
+
         >
+
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#D4AF37]/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
+
           
+
           <div className="flex-1 relative z-10 text-center lg:text-left">
+
             <h2 className="text-3xl md:text-4xl font-serif mb-8 leading-tight tracking-tight text-white uppercase">
+
               Ready to build the <span className="text-[#D4AF37]">future</span> with us?
+
             </h2>
-            <p className="text-gray-300 mb-10 text-base md:text-lg leading-relaxed font-light italic">
+
+            <p className="text-gray-400 mb-10 text-lg leading-relaxed font-light italic">
+
               "Foundation of Trust, Blueprint of Excellence"
+
             </p>
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Link href="/contact" className="inline-flex items-center gap-8 bg-[#D4AF37] text-white px-12 py-5 rounded-full font-bold text-xs uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all shadow-2xl">
+
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+
+              <Link href="/contact" className="inline-flex items-center bg-[#D4AF37] text-white px-12 py-5 rounded-full font-bold text-xs uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all shadow-2xl">
+
                 Let's Build
+
               </Link>
+
             </motion.div>
+
           </div>
 
-          <div className="flex-1 grid grid-cols-2 gap-6 w-full relative z-10 opacity-40 group hidden md:grid">
-            <motion.div 
-              animate={{ y: [0, -30, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="space-y-6"
-            >
-              <div className="bg-[#D4AF37]/20 h-20 rounded-[2.5rem] border border-[#D4AF37]/20 shadow-inner" />
-              <div className="bg-white/15 h-44 rounded-[2.5rem] border border-white/10 shadow-inner" />
+          
+
+          <div className="flex-1 grid grid-cols-2 gap-6 w-full relative z-10 opacity-20 hidden md:grid">
+
+            <motion.div animate={{ y: [0, -30, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} className="space-y-6">
+
+              <div className="bg-[#D4AF37]/20 h-24 rounded-[2.5rem] border border-[#D4AF37]/20" />
+
+              <div className="bg-white/15 h-44 rounded-[2.5rem] border border-white/10" />
+
             </motion.div>
-            <motion.div 
-              animate={{ y: [0, 30, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="space-y-6 pt-16"
-            >
-              <div className="bg-white/15 h-44 rounded-[2.5rem] border border-white/10 shadow-inner" />
-              <div className="bg-[#D4AF37]/20 h-20 rounded-[2.5rem] border border-[#D4AF37]/20 shadow-inner" />
+
+            <motion.div animate={{ y: [0, 30, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }} className="space-y-6 pt-16">
+
+              <div className="bg-white/15 h-44 rounded-[2.5rem] border border-white/10" />
+
+              <div className="bg-[#D4AF37]/20 h-24 rounded-[2.5rem] border border-[#D4AF37]/20" />
+
             </motion.div>
+
           </div>
+
         </motion.div>
+
       </section>
     </main>
   );

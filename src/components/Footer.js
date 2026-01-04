@@ -3,8 +3,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Facebook, Instagram, Linkedin, Twitter, Mail, Phone, MapPin, ArrowUp } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation'; // Added for Admin detection
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  // --- HIDE FOOTER ON ADMIN PAGES ---
+  if (pathname.startsWith('/admin')) return null;
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };

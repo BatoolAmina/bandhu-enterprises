@@ -3,10 +3,15 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation'; // Added for Admin detection
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname(); // Get current URL path
+
+  // --- HIDE NAVBAR ON ADMIN PAGES ---
+  if (pathname.startsWith('/admin')) return null;
 
   useEffect(() => {
     const handleScroll = () => {
