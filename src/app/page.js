@@ -104,7 +104,7 @@ export default function Home() {
             transition={{ delay: 0.4, duration: 1 }}
             className="text-xl md:text-2xl text-gray-100 mb-10 max-w-2xl mx-auto leading-relaxed"
           >
-            Leading in <span className="text-white font-semibold underline decoration-[#D4AF37]">Structural Precision</span> & <span className="text-white font-semibold underline decoration-[#D4AF37]">Premium Interiors.</span>
+            Leading in <span className="text-white font-semibold decoration-[#D4AF37]">Structural Precision</span> & <span className="text-white font-semibold decoration-[#D4AF37]">Premium Interiors.</span>
           </motion.h2 >
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
