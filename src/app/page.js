@@ -198,7 +198,7 @@ export default function Home() {
               },
               {
                 id: 3,
-                title: "Appasomy Associates Hub",
+                title: "Appaswamy Associates Hub",
                 category: "Corporate Fit-out",
                 url: "/Appasomy Associates.mp4",
                 location: "Aliganj, Lucknow",
