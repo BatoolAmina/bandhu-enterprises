@@ -32,7 +32,8 @@ const iconMap = {
   Component: <Component size={32} />,
   FlaskConical: <FlaskConical size={32} />,
   UtensilsCrossed: <UtensilsCrossed size={32} />,
-  Waves: <Waves size={32} />
+  Waves: <Waves size={32} />,
+  Briefcase: <Briefcase size={32} />
 };
 
 const STATIC_SERVICES = [
@@ -51,6 +52,14 @@ const STATIC_SERVICES = [
     iconName: "HardHat",
     description: "Advanced structural engineering blueprints ensuring maximum safety and integrity.",
     items: ["Load Analysis", "Reinforcement Details", "Safety Audits"]
+  },
+  {
+    _id: "premium-office-interior",
+    category: "Interior Excellence",
+    title: "Premium Office Interior",
+    iconName: "Briefcase",
+    description: "Creating sophisticated, high-performance workspaces tailored for corporate identity and employee well-being.",
+    items: ["Executive Cabins", "Lounge Area Design", "Modern Lighting Solutions"]
   },
   {
     _id: "69592590eb5c84f4a475d0d9",
@@ -132,11 +141,12 @@ export default function Services() {
 
   return (
     <main className="bg-[#FDFCF0] overflow-hidden font-sans selection:bg-orange-100 selection:text-orange-900">
+      
       <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden bg-[#1C1612]">
         <motion.div style={{ scale }} className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-black/60 z-10" />
           <img 
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070" 
+            src="https://plus.unsplash.com/premium_photo-1681690860636-3d96ea7a593b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8YnVpbGRpbmclMjBjb25zdHJ1Y3Rpb258ZW58MHx8MHx8fDA%3D" 
             className="w-full h-full object-cover transition-all duration-1000"
             alt="Engineering Background"
           />
@@ -177,18 +187,19 @@ export default function Services() {
           />
         </motion.div>
 
+        {/* Using flex flex-wrap justify-center to handle 1 or 2 items in a row properly */}
         <motion.div 
           variants={staggerContainer}
           initial="initial"
           whileInView="whileInView"
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="flex flex-wrap justify-center gap-8"
         >
           {STATIC_SERVICES.map((service, index) => (
             <motion.div
-              key={service._id}
+              key={index}
               variants={fadeInUp}
               whileHover={{ y: -8 }}
-              className="bg-white p-10 rounded-3xl border border-[#E5E1C9] group transition-all duration-500 hover:shadow-2xl hover:bg-[#FAF9E6] flex flex-col items-center text-center relative overflow-hidden"
+              className="bg-white p-10 rounded-3xl border border-[#E5E1C9] group transition-all duration-500 hover:shadow-2xl hover:bg-[#FAF9E6] flex flex-col items-center text-center relative overflow-hidden w-full md:w-[calc(50%-16px)] lg:w-[calc(33.33%-22px)] min-w-[300px]"
             >
               <div className="absolute top-0 right-0 bg-[#D4AF37]/10 px-4 py-1 rounded-bl-xl text-[10px] font-bold uppercase tracking-widest text-[#D4AF37]">
                 {service.category}

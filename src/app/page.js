@@ -76,16 +76,11 @@ export default function Home() {
       <section className="relative h-[95vh] flex items-center justify-center overflow-hidden bg-[#1A1A1A]">
         <div className="absolute inset-0 z-0">
           <motion.div style={{ y: y1, scale }} className="absolute inset-0">
-            <video 
-              key={backgroundVideos[currentVideoIdx]}
-              autoPlay 
-              muted 
-              playsInline 
-              onEnded={handleVideoEnd}
-              className="w-full h-full object-cover opacity-100"
-            >
-              <source src={backgroundVideos[currentVideoIdx]} type="video/mp4" />
-            </video>
+            <img 
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070" 
+              className="w-full h-full object-cover" 
+              alt="Bandhu Enterprises Architecture"
+            />
           </motion.div>
           <div className="absolute inset-0 bg-black/40 bg-gradient-to-b from-transparent to-[#1A1A1A]/90" />
         </div>
@@ -109,7 +104,7 @@ export default function Home() {
             transition={{ delay: 0.4, duration: 1 }}
             className="text-xl md:text-2xl text-gray-100 mb-10 max-w-2xl mx-auto leading-relaxed"
           >
-            Leading in <span className="text-white font-semibold decoration-[#D4AF37]">Structural Precision</span> & <span className="text-white font-semibold decoration-[#D4AF37]">Premium Interiors.</span>
+            Leading in <span className="text-white font-semibold underline decoration-[#D4AF37]">Structural Precision</span> & <span className="text-white font-semibold underline decoration-[#D4AF37]">Premium Interiors.</span>
           </motion.h2 >
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -183,7 +178,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="flex flex-wrap justify-center gap-12">
             {[
               {
                 id: 1,
@@ -195,17 +190,25 @@ export default function Home() {
               },
               {
                 id: 2,
-                title: "Contemporary Dual-Tone Modular Kitchen",
+                title: "Contemporary Modular Kitchen",
                 category: "Interior Solutions",
                 url: "/Modular Kitchen.mp4",
-                location: "Lucknow, Uttar Pradesh",
+                location: "Gomti Nagar, Lucknow",
                 description: "A high-end modular kitchen featuring gloss seafoam and obsidian cabinetry with integrated LED glass displays."
+              },
+              {
+                id: 3,
+                title: "Appasomy Associates Hub",
+                category: "Corporate Fit-out",
+                url: "/Appasomy Associates.mp4",
+                location: "Aliganj, Lucknow",
+                description: "State-of-the-art corporate environment designed for maximum productivity and premium professional appeal."
               }
             ].map((video) => (
               <motion.div 
                 key={video.id}
                 whileHover={{ y: -10 }}
-                className="group relative cursor-pointer"
+                className="group relative cursor-pointer w-full md:w-[calc(50%-24px)] lg:w-[calc(50%-24px)] max-w-[600px]"
                 onClick={() => setSelectedVideo(video)}
               >
                 <div className="relative aspect-video rounded-[2rem] overflow-hidden shadow-2xl border border-white/10">
