@@ -203,7 +203,7 @@ export default function About() {
         <p className="text-[#5C534E] mb-10 text-base md:text-lg leading-relaxed italic">
           "Foundation of Trust, Blueprint of Excellence"
         </p>
-        <a href="/contact" className="inline-block bg-[#2D241E] text-white px-12 py-5 rounded-full font-bold hover:bg-[#D4AF37] transition-all shadow-xl uppercase text-[10px] tracking-[0.3em]">
+        <a href="/contact" className="inline-block bg-[#2D241E] text-white px-12 py-5 rounded-full font-bold hover:bg-[#D4AF37] transition-all shadow-xl uppercase text-xs tracking-[0.3em]">
           Start A Project
         </a>
       </section>

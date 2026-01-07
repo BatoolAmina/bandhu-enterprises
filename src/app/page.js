@@ -203,6 +203,14 @@ export default function Home() {
                 url: "/Appasomy Associates.mp4",
                 location: "Aliganj, Lucknow",
                 description: "State-of-the-art corporate environment designed for maximum productivity and premium professional appeal."
+              },
+              {
+                id: 4,
+                title: "Gurunanak Gate Ashiyana",
+                category: "Civil Infrastructure",
+                url: "/Gurnanak Gate Ashiyana, Lucknow.mp4",
+                location: "Ashiyana, Lucknow",
+                description: "A landmark structural project representing precision engineering and community heritage."
               }
             ].map((video) => (
               <motion.div 

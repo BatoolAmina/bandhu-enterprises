@@ -298,7 +298,7 @@ export default function Projects() {
             <p className="text-gray-400 mb-10 text-lg leading-relaxed font-light italic">
               "Foundation of Trust, Blueprint of Excellence"
             </p>
-            <Link href="/contact" className="inline-flex items-center bg-[#D4AF37] text-white px-12 py-5 rounded-full font-bold text-[10px] uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all shadow-2xl">
+            <Link href="/contact" className="inline-flex items-center bg-[#D4AF37] text-white px-12 py-5 rounded-full font-bold text-xs uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all shadow-2xl">
               Let's Build
             </Link>
           </div>
