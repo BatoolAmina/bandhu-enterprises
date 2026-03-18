@@ -136,10 +136,15 @@ export default function Footer() {
 
         </div>
 
-        <div className="border-t border-[#D4AF37]/20 pt-5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-[#D1C7BD]/50 text-[11px] tracking-[0.2em] uppercase font-medium">
-            © {currentYear} Bandhu Enterprises. All rights reserved.
-          </p>
+        <div className="border-t border-[#D4AF37]/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex flex-col items-center md:items-start gap-2">
+            <p className="text-[#D1C7BD]/50 text-[11px] tracking-[0.2em] uppercase font-medium">
+              © {currentYear} Bandhu Enterprises. All rights reserved.
+            </p>
+            <p className="text-[#D4AF37]/40 text-[10px] tracking-[0.15em] uppercase">
+              Designed by Batool Amina
+            </p>
+          </div>
           
           <button 
             onClick={scrollToTop}
