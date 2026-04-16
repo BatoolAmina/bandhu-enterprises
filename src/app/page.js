@@ -216,7 +216,7 @@ export default function Home() {
                 id: 5,
                 title: "Bespoke Religious Mandir & Imambara",
                 category: "Architectural Woodwork",
-                url: "/WhatsApp Video 2026-04-15 at 13.42.22.mp4",
+                url: "/Bespoke Religious Mandir & Imambara.mp4",
                 location: "Lucknow",
                 description: "Intricate religious craftsmanship featuring ornate Jali lattice doors, golden dome accents, and custom Islamic calligraphy engravings."
               }
