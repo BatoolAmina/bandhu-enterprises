@@ -211,6 +211,14 @@ export default function Home() {
                 url: "/Gurnanak Gate Ashiyana, Lucknow.mp4",
                 location: "Ashiyana, Lucknow",
                 description: "A landmark structural project representing precision engineering and community heritage."
+              },
+              {
+                id: 5,
+                title: "Bespoke Religious Mandir & Imambara",
+                category: "Architectural Woodwork",
+                url: "/WhatsApp Video 2026-04-15 at 13.42.22.mp4",
+                location: "Lucknow",
+                description: "Intricate religious craftsmanship featuring ornate Jali lattice doors, golden dome accents, and custom Islamic calligraphy engravings."
               }
             ].map((video) => (
               <motion.div 
